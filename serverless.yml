@@ -35,6 +35,12 @@ functions:
       - httpApi:
           path: /users
           method: get
+  getUser:
+    handler: src/getUser.getUser
+    events:
+      - httpApi:
+          path: /user/{id}
+          method: get
 resources:
   Resources:
 

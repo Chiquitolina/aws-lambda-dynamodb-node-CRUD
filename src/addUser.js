@@ -1,3 +1,4 @@
+const { v4 } = require('uuid')
 const AWS = require('aws-sdk')
 
 const addUser = async(event) => {
@@ -6,7 +7,7 @@ const addUser = async(event) => {
 
     const {nombre, apellido, email} = JSON.parse(event.body)
     const date = new Date()
-    let id = crypto.randomUUID()
+    let id = v4()
 
     const newUser = {
         id,
