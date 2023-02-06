@@ -6,6 +6,16 @@ provider:
   runtime: nodejs18.x
   region: us-west-2
 
+# si tengo el rol con permisos
+  iamRoleStatements:
+  #permiso de poder escribir en la tabla
+    - Effect: Allow
+      Action:
+        - dynamodb:"
+  #indicar qué tabla se puede escribir con el arn
+      Resource:
+        - arn:aws:dynamodb:us-west-2:230578018295:table/UsersTable
+
 functions:
   api:
     handler: index.hello
@@ -15,10 +25,17 @@ functions:
           method: get
 resources:
   Resources:
+
+  # crear tabla vía código
+  # por supuesto se puede hacer tmb desde aws panel
+
+    #declaración de la tabla
     UsersTable:
       Type: AWS::DynamoDB::Table
       Properties:
+        #nombre verdadero, el primero es declaración
         TableName: UsersTable
+        #pago
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id
