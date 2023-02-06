@@ -11,17 +11,29 @@ provider:
   #permiso de poder escribir en la tabla
     - Effect: Allow
       Action:
-        - dynamodb:"
+        - dynamodb:*
   #indicar qué tabla se puede escribir con el arn
       Resource:
         - arn:aws:dynamodb:us-west-2:230578018295:table/UsersTable
 
 functions:
   api:
-    handler: index.hello
+    handler: src/index.hello
     events:
       - httpApi:
           path: /
+          method: get
+  createUser:
+    handler: src/addUser.addUser
+    events:
+      - httpApi:
+          path: /adduser
+          method: post
+  getUsers:
+    handler: src/getUsers.getUsers
+    events:
+      - httpApi:
+          path: /users
           method: get
 resources:
   Resources:
