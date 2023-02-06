@@ -41,6 +41,12 @@ functions:
       - httpApi:
           path: /user/{id}
           method: get
+  updateUser:
+    handler: src/updateUser.updateUser
+    events:
+      - httpApi:
+          path: /updateuser/{id}
+          method: put
 resources:
   Resources:
 
